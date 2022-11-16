@@ -1,0 +1,18 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jsjyz_v?unicode=true&characterSet=utf-8&TimeZone=UTC
+#  sql:
+#    init:
+#      schema-locations: classpath*:sql/schema/*.sql
+#      data-locations: classpath*:sql/data/*.sql
+  mvc:
+    static-path-pattern: /static/**
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+#  mapper-locations: classpath*:mapper/*.xml
