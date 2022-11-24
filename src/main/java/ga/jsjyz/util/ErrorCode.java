@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum ErrorCode {
     ERROR_PARAMETER(10001,"参数错误"),
-    FAILED(10101,"Failed")
+    FAILED(10101,"Failed"),
+    ERROR_EMPTY(10002,"对象为空")
     ;
 
     public int getCode() {

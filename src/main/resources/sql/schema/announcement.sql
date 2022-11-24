@@ -1,4 +1,4 @@
-DROP TABLE  IF EXISTS `announcement`;
+--DROP TABLE  IF EXISTS `announcement`;
 CREATE TABLE announcement
 (
     id int(32) primary key auto_increment,

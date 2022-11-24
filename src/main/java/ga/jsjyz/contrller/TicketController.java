@@ -4,6 +4,7 @@ import ga.jsjyz.service.serviceImpl.TicketServiceImpl;
 import ga.jsjyz.util.FileUtil;
 import ga.jsjyz.util.Response;
 import ga.jsjyz.vo.AddTicketVo;
+import ga.jsjyz.vo.AlterStateTicketVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,5 +34,13 @@ public class TicketController {
     @GetMapping ("/getTicket")
     public Response getTicket(){
         return ticketService.getTicket();
+    }
+    @GetMapping("/admin/getTicketList")
+    public Response getTicketList(@RequestParam String state,@RequestParam String order){
+        return ticketService.getTicketList(state,order);
+    }
+    @PostMapping ("/alterTicket")
+    public Response alterTicket(@RequestBody AlterStateTicketVo alterStateTicketVo){
+        return ticketService.alterTicket(alterStateTicketVo.getId(),alterStateTicketVo.getState());
     }
 }

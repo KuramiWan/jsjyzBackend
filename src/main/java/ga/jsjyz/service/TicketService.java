@@ -7,4 +7,8 @@ public interface TicketService {
     Response saveTicket(Ticket ticket);
 
     Response getTicket();
+
+    Response getTicketList(String state, String order);
+
+    Response alterTicket(String id, String state);
 }

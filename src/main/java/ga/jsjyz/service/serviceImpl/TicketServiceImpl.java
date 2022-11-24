@@ -10,7 +10,6 @@ import ga.jsjyz.vo.UserTicketVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -54,6 +53,37 @@ public class TicketServiceImpl implements TicketService {
         }
         return new Response().ok(ticketKanbanVos);
     }
+
+    @Override
+    public Response getTicketList(String state, String order) {
+        LambdaQueryWrapper<Ticket> ticketLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        if (order.equals("最旧")){
+            ticketLambdaQueryWrapper.orderByDesc(true,Ticket::getCreateTime);
+        }else {
+            ticketLambdaQueryWrapper.orderByAsc(true,Ticket::getCreateTime);
+        }
+        ticketLambdaQueryWrapper.eq(Ticket::getState,state);
+        List<Ticket> tickets = ticketMapper.selectList(ticketLambdaQueryWrapper);
+        if (tickets.isEmpty()){
+            return new Response(ErrorCode.ERROR_EMPTY);
+        }
+
+        return new Response().ok(tickets);
+    }
+
+    @Override
+    public Response alterTicket(String id, String state) {
+        LambdaQueryWrapper<Ticket> ticketLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        ticketLambdaQueryWrapper.eq(Ticket::getId, id);
+        Ticket ticket = new Ticket();
+        ticket.setId(Long.parseLong(id));
+        int update = ticketMapper.update(ticket, ticketLambdaQueryWrapper);
+        if (update == 0) {
+            return new Response(ErrorCode.FAILED);
+        }
+        return new Response().ok(new Object());
+    }
+
     public List<UserTicketVo> copyKanbanVos(List<Ticket> tickets) {
         ArrayList<UserTicketVo> userTicketVos = new ArrayList<UserTicketVo>();
         tickets.forEach(ticket ->{
