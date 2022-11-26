@@ -2,8 +2,9 @@ package ga.jsjyz.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ga.jsjyz.pojo.Ticket;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Mapper;
 
-@Component
+
+@Mapper
 public interface TicketMapper extends BaseMapper<Ticket> {
 }

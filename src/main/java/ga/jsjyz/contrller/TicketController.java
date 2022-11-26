@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
+@RestController("/")
 public class TicketController {
     @Autowired
     private TicketServiceImpl ticketService;
@@ -39,7 +39,8 @@ public class TicketController {
     public Response getTicketList(@RequestParam String state,@RequestParam String order){
         return ticketService.getTicketList(state,order);
     }
-    @PostMapping ("/alterTicket")
+
+    @PostMapping ( "/admin/alterTicket")
     public Response alterTicket(@RequestBody AlterStateTicketVo alterStateTicketVo){
         return ticketService.alterTicket(alterStateTicketVo.getId(),alterStateTicketVo.getState());
     }

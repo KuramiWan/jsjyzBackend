@@ -39,7 +39,7 @@ public class TicketServiceImpl implements TicketService {
                 tickets.remove(ticket);
             };
         }
-        Map<String, List<Ticket>> map= tickets.stream().collect(Collectors.groupingBy(Ticket::getState));
+        Map<String, List<Ticket>> map = tickets.stream().collect(Collectors.groupingBy(Ticket::getState));
         List<TicketKanbanVo> ticketKanbanVos = new ArrayList<>();
         map.forEach((key, value) -> {
             TicketKanbanVo ticketKanbanVo = new TicketKanbanVo();
@@ -67,21 +67,21 @@ public class TicketServiceImpl implements TicketService {
         if (tickets.isEmpty()){
             return new Response(ErrorCode.ERROR_EMPTY);
         }
-
         return new Response().ok(tickets);
     }
 
     @Override
     public Response alterTicket(String id, String state) {
         LambdaQueryWrapper<Ticket> ticketLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        ticketLambdaQueryWrapper.eq(Ticket::getId, id);
+        ticketLambdaQueryWrapper.eq(Ticket::getId,id);
         Ticket ticket = new Ticket();
-        ticket.setId(Long.parseLong(id));
+        ticket.setState(state);
         int update = ticketMapper.update(ticket, ticketLambdaQueryWrapper);
         if (update == 0) {
-            return new Response(ErrorCode.FAILED);
+            return new Response(ErrorCode.ALTER_FAILED);
         }
-        return new Response().ok(new Object());
+        return new Response().ok(null);
+
     }
 
     public List<UserTicketVo> copyKanbanVos(List<Ticket> tickets) {
