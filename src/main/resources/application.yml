@@ -2,7 +2,7 @@ server:
   port: 8880
 spring:
   datasource:
-    username: root
+    username: jsjyz_v
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/jsjyz_v?unicode=true&characterSet=utf-8&TimeZone=UTC
