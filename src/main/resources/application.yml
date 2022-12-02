@@ -1,8 +1,18 @@
 server:
   port: 8880
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 6
+    timeout: 3
   datasource:
-    username: jsjyz_v
+    username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/jsjyz_v?unicode=true&characterSet=utf-8&TimeZone=UTC
