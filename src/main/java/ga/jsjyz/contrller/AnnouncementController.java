@@ -1,14 +1,11 @@
 package ga.jsjyz.contrller;
 
-import ga.jsjyz.pojo.Announcement;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import ga.jsjyz.service.AnnouncementService;
 import ga.jsjyz.util.ErrorCode;
 import ga.jsjyz.util.Response;
 import ga.jsjyz.vo.AnnouncementVo;
-import io.netty.util.internal.StringUtil;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/api")

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,10 +35,15 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public Response getTicket() {
         List<Ticket> tickets = ticketMapper.selectList(new LambdaQueryWrapper<>());
-        for (Ticket ticket : tickets) {
+        Iterator<Ticket> iterator = tickets.iterator();
+        while (iterator.hasNext()) {
+            Ticket ticket = iterator.next();
             if (ticket.getCreateTime().isBefore(LocalDateTime.now().plus(-2,ChronoUnit.WEEKS))){
-                tickets.remove(ticket);
-            };
+                iterator.remove();
+            }
+        }
+        if (tickets.isEmpty()) {
+            return new Response(ErrorCode.ERROR_EMPTY);
         }
         Map<String, List<Ticket>> map = tickets.stream().collect(Collectors.groupingBy(Ticket::getState));
         List<TicketKanbanVo> ticketKanbanVos = new ArrayList<>();
