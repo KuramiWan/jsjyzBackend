@@ -6,6 +6,5 @@ CREATE TABLE ticket
     phone varchar(32) not null,
     create_time datetime not null,
     question varchar(32) not null,
-    state varchar(32) not null,
-    images varchar(255)
+    state varchar(32) not null
 );

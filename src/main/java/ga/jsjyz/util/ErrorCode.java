@@ -9,11 +9,11 @@ public enum ErrorCode {
     FAILED(10101,"Failed"),
     ERROR_EMPTY(10002,"对象为空"),
 
-    ALTER_FAILED(10003,"修改失败"),
+    ALTER_FAILED(10103,"修改失败"),
 
     NO_LOGIN(10004,"未登录"),
-    NO_PERMISSIONS(10005,"无权限")
-    ;
+    NO_PERMISSIONS(10005,"无权限"),
+    DELETE_FAILED(10104,"删除失败" );
 
     public int getCode() {
         return code;

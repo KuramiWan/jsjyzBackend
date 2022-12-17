@@ -1,8 +1,6 @@
 package ga.jsjyz.contrller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import ga.jsjyz.pojo.User;
 import ga.jsjyz.service.PermissionService;
 import ga.jsjyz.util.ErrorCode;
 import ga.jsjyz.util.Response;
@@ -25,7 +23,6 @@ public class PermissionController {
             return new Response(ErrorCode.ERROR_PARAMETER);
         }else {
             return permissionService.login(username,password);
-
         }
     }
     @PostMapping("/register")

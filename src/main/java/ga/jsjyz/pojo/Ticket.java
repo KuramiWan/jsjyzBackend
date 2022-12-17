@@ -15,5 +15,5 @@ public class Ticket {
     private LocalDateTime createTime;
     private String state;
     private String question;
-    private String images;
+
 }
